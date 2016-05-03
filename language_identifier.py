@@ -1,23 +1,59 @@
 # -*- coding: utf-8 -*-
+from __future__ import division
 
-if __name__ == "__main__":
+def analyze(textfile):
     # read csv
-    with open(frequency_file) as myfile:
+    with open('letter_frequency.csv') as myfile:
         content = myfile.readlines()
     data = []
     for line in content:
         data.append(line.strip().split(';'))
 
-    # TODO calculate frequencies for each letter
+    all_letters = []
+    for i in range(1, len(data)):
+        all_letters.append(data[i][0])
+
+    languages = []
+    for i in range(1, len(data[0])):
+        languages.append(data[0][i])
+
+    # calculate
     with open(textfile) as myfile:
         content = myfile.readlines()
+    dic = {}
+    total = 0
+    for line in content:
+        for letter in line:
+            letter = letter.lower()
+            if letter in all_letters:
+                total += 1
+                if letter in dic: dic[letter] += 1
+                else: dic[letter] = 0
 
-    # TODO calculate mean squared error
+    # normalize
+    for letter in dic:
+        dic[letter] = dic[letter] / total
+    #print 'Letter frequency in text:', dic
+
+    # calculate
     scores = {}
-    for language in languages:
-        pass
-        ...
+    for i in range(len(languages)):
+        language = languages[i]
+        score = 0.0
+        # calculate square error
+        for l in range(len(all_letters)):
+            letter = all_letters[l]
+            expected = float(data[l+1][i+1].split('%')[0])/100.0
+            if letter in dic: score += (dic[letter] - expected)**2
+            else: score += expected**2
+        scores[language] = score
 
-    # TODO print scores
-    for language in languages:
-        print language, scores[language]
+    print 'Scores for', textfile, ':'
+    for language in sorted(scores, key=scores.get):
+        print language + ': MSE', round(scores[language], 4), '|', round(1 / scores[language], 1), 'points'
+
+if __name__ == "__main__":
+    text = """In de prachtige zeestad Genua, de trotsche bijgenaamd, werd
+    omstreeks het jaar 1435 een knaapje geboren, dat nu in alle landen
+    als Christophorus Columbus bekend is."""
+    analyze(text)
