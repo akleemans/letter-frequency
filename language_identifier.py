@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
+'''
+Tries to identify a language from a small subset of languages, based on the wikipedia table
+https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_letters_in_other_languages
+'''
 from __future__ import division
+__author__ = "Adrianus Kleemans"
 
 def analyze(textfile):
     # read csv
@@ -53,7 +58,5 @@ def analyze(textfile):
         print language + ': MSE', round(scores[language], 4), '|', round(1 / scores[language], 1), 'points'
 
 if __name__ == "__main__":
-    text = """In de prachtige zeestad Genua, de trotsche bijgenaamd, werd
-    omstreeks het jaar 1435 een knaapje geboren, dat nu in alle landen
-    als Christophorus Columbus bekend is."""
-    analyze(text)
+    for textfile in ['nl_columbus.txt', 'it_boccaccio.txt', 'fi_kivi.txt']:
+        analyze('snippets/' + textfile)
