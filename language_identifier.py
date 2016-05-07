@@ -53,9 +53,29 @@ def analyze(textfile):
             else: score += expected**2
         scores[language] = score
 
+    data = []
+    xlabels = []
     print 'Scores for', textfile, ':'
-    for language in sorted(scores, key=scores.get):
+    for language in sorted(scores, key=scores.get, reverse=True):
         print language + ': MSE', round(scores[language], 4), '|', round(1 / scores[language], 1), 'points'
+        data.append(scores[language])
+        xlabels.append(language)
+
+    # check if pylab is available, then plot results
+    try:
+        import pylab
+    except ImportError:
+        pass
+
+    if pylab:
+        fig, ax = pylab.plt.subplots(facecolor='white')
+        pos = pylab.arange(len(data)) + .5
+        ax.set_xlabel('MSE')
+        ax.set_title('Language matching, MSE for ' + textfile.split('/')[1])
+        barlist = pylab.plt.barh(pos, data, align='center', color='#E44424')
+        pylab.yticks(pos, xlabels)
+        pylab.grid(True)
+        pylab.plt.show()
 
 if __name__ == "__main__":
     for textfile in ['nl_columbus.txt', 'it_boccaccio.txt', 'fi_kivi.txt']:
