@@ -9,12 +9,15 @@ This is not in any way an accurate general purpose language identifier, just som
 It runs through the text, builds the frequency list for all occurring letters and then calculates [mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error) (for all letters) for each language.
 
 ## Run
-Run with `python letter_frequency.py`, here the five top languages for each text snippet:
+Run with `python letter_frequency.py`, here the five top languages for each text snippet.
+The script will also generate a graph if matplotlib is installed (optional).
 
-### Scores for nl_columbus.txt
+### Scores for nl_columbus_short.txt
 >In de prachtige zeestad Genua, de trotsche bijgenaamd, werd
 omstreeks het jaar 1435 een knaapje geboren, dat nu in alle landen
 als Christophorus Columbus bekend is. (...)
+
+![Pylab-graph](https://github.com/akleemans/letter-frequency/blob/master/columbus.png)
 
 * **Dutch**: MSE 0.0016 | 639.8 points
 * German: MSE 0.006 | 166.3 points
@@ -22,7 +25,7 @@ als Christophorus Columbus bekend is. (...)
 * French: MSE 0.0127 | 78.6 points
 * Swedish: MSE 0.0137 | 72.9 points
 
-### Scores for it_boccaccio.txt
+### Scores for it_boccaccio_short.txt
 > Solone, il cui petto un umano tempio di divina sapienzia fu reputato,
 e le cui sacratissime leggi sono ancora alli presenti uomini chiara
 testimonianza dell'antica giustizia, era, (...)
@@ -33,7 +36,7 @@ testimonianza dell'antica giustizia, era, (...)
 * Esperanto: MSE 0.0068 | 147.4 points
 * Portuguese: MSE 0.0072 | 139.4 points
 
-### Scores for fi_kivi.txt
+### Scores for fi_kivi_short.txt
 > Jukolan talo, eteläisessä Hämeessä, seisoo erään mäen pohjaisella
 rinteellä, liki Toukolan kylää. Sen läheisin ympäristö on kivinen
 tanner, mutta alempana alkaa pellot, joissa,  (...)
