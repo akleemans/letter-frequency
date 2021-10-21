@@ -2,7 +2,7 @@
 
 This is a python script which tries to identify the language of a text by the frequency of its letter.
 
-See also [**this Blog post**](https://www.kleemans.ch/letter-frequency).
+See also [**this Blog post**](https://www.kleemans.ch/identifying-language-by-letter-frequency).
 
 This is not in any way an accurate general purpose language identifier, just some hacking around with the table at [Wikipedia: Letter frequencies](https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_letters_in_other_languages) and only applies to very small subset of languages listed there (list at the end of this readme).
 
